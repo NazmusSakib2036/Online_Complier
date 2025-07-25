@@ -3,97 +3,82 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* Ensure vertical flow */
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    transition: all 0.3s ease;
     color: var(--text-color);
-    /* Use CSS variables for themes */
     background-color: var(--background-color);
 }
 
 .compiler__container {
     width: 100%;
-    max-width: 1500px;
-    /* Slightly wider max-width for larger screens */
+    max-width: 1600px;
     margin: 0 auto;
     padding: 2rem;
-    /* Increased padding */
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     flex: 1;
-    /* Allow container to grow */
 }
 
 /* --- Header Styles --- */
 .compiler__header {
     padding: 1.25rem 2rem;
-    /* Enhanced padding */
-    border-radius: 0.75rem;
-    /* More rounded corners */
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1.25rem;
-    /* Increased gap */
     box-shadow: var(--header-shadow);
-    /* Subtle shadow for depth */
     background-color: var(--header-bg);
+    border: 1px solid var(--header-border);
 }
 
 .compiler__title {
     font-size: 1.8rem;
-    /* Larger title */
     font-weight: 700;
-    /* Bolder font */
     margin: 0;
     letter-spacing: -0.02em;
-    /* Tighter letter spacing */
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-color-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .compiler__controls {
     display: flex;
     gap: 0.85rem;
-    /* Refined gap */
     align-items: center;
 }
 
 /* --- Select Dropdown --- */
 .compiler__select {
-    padding: 0.6rem 0.9rem;
-    /* Adjusted padding */
-    border-radius: 0.35rem;
-    /* Slightly more rounded */
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
     font-size: 0.95rem;
-    /* Slightly larger font */
     cursor: pointer;
     outline: none;
     border: 1px solid var(--border-color);
     background-color: var(--input-bg);
     color: var(--text-color);
     appearance: none;
-    /* Remove default arrow */
     background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" fill-rule="evenodd"></path></svg>');
-    /* Custom arrow */
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 0.8em;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    transition: all 0.2s ease;
+    min-width: 120px;
 }
 
 .compiler__select:focus {
     border-color: var(--accent-color);
-    /* Highlight on focus */
-    box-shadow: 0 0 0 2px var(--accent-color-light);
+    box-shadow: 0 0 0 3px var(--accent-color-light);
 }
 
 /* --- Button Styles --- */
 .compiler__button {
-    padding: 0.6rem 1.2rem;
-    /* Adjusted padding */
-    border-radius: 0.35rem;
-    /* Slightly more rounded */
+    padding: 0.7rem 1.3rem;
+    border-radius: 8px;
     font-size: 0.95rem;
     cursor: pointer;
     border: none;
@@ -102,103 +87,98 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Center content */
     gap: 0.6rem;
-    font-weight: 500;
+    font-weight: 600;
+}
+
+.compiler__button-icon {
+    font-size: 0.9em;
+    color: rgb(255, 255, 255);
 }
 
 .compiler__button--run {
-    background-color: #28a745;
-    /* Deeper green */
+    background-color: var(--run-button-bg);
     color: white;
 }
 
 .compiler__button--clear {
-    background-color: #dc3545;
-    /* Deeper red */
+    background-color: var(--clear-button-bg);
     color: white;
+}
+
+.compiler__button--fix {
+    background-color: var(--run-button-bg);
+    color: black;
 }
 
 .compiler__button:hover:not(.disabled) {
     transform: translateY(-2px);
-    /* More pronounced lift effect */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    /* Add a subtle shadow on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
 }
 
 .compiler__button.disabled {
     opacity: 0.6;
-    /* Increased opacity for disabled state */
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+    filter: none;
 }
 
 /* --- Workspace Layout --- */
 .compiler__workspace {
     display: grid;
-    /* Use CSS Grid for better layout control */
     grid-template-columns: 1fr 1fr;
-    /* Two equal columns */
     gap: 1.5rem;
     flex: 1;
     min-height: 0;
-    /* Important for flex/grid items within a column flex container */
 }
 
 .compiler__editor,
 .compiler__output {
-    border-radius: 0.75rem;
-    /* More rounded corners */
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     flex: 1;
-    min-height: 250px;
-    /* Minimum height for smaller screens, if one panel is hidden */
+    min-height: 400px;
     box-shadow: var(--panel-shadow);
-    /* Subtle shadow for panels */
     background-color: var(--panel-bg);
     border: 1px solid var(--panel-border);
 }
 
 /* Editor Header */
-.compiler__editor-header,
-.compiler__output-header {
-    padding: 0.85rem 1.25rem;
-    /* Adjusted padding */
+.compiler__editor-header {
+    padding: 0.85rem 1.5rem;
     font-size: 1rem;
-    /* Slightly larger font */
     font-weight: 600;
     border-bottom: 1px solid var(--panel-border);
     background-color: var(--panel-header-bg);
     color: var(--panel-header-text);
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.compiler__filename-container {
+    display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-/* Adding icons to headers */
-.compiler__editor-header::before {
-    content: '</>';
-    /* Code icon */
-    font-family: 'Font Awesome 5 Free';
-    /* Placeholder, use a real icon font if available */
-    font-weight: 900;
-    margin-right: 0.5rem;
-    color: var(--icon-color);
+.compiler__file-icon {
+    font-size: 1.1em;
 }
 
-.compiler__output-header::before {
-    content: '>';
-    /* Terminal icon */
-    font-family: 'Font Awesome 5 Free';
-    /* Placeholder */
-    font-weight: 900;
-    margin-right: 0.5rem;
-    color: var(--icon-color);
+.compiler__filename {
+    font-family: 'Fira Code', monospace;
+    font-weight: 500;
 }
 
+.compiler__fix-action {
+    margin-left: auto;
+}
 
 /* Code Input Area */
 .compiler__code-wrapper {
@@ -214,18 +194,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 1.25rem;
-    /* Increased padding */
+    padding: 1.5rem;
     font-size: 1.05rem;
-    /* Slightly larger font */
     line-height: 1.6;
-    /* Improved readability */
     tab-size: 4;
     white-space: pre;
     overflow: auto;
     box-sizing: border-box;
     font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-    /* Professional coding font */
 }
 
 .compiler__code-input {
@@ -236,20 +212,36 @@
     background-color: transparent;
     color: inherit;
     caret-color: var(--caret-color);
-    /* Theme-dependent caret color */
 }
 
 .compiler__code-display {
     z-index: 1;
     pointer-events: none;
     color: transparent;
-    /* Keeping it transparent for highlighting libraries if desired */
 }
 
 /* Output Area */
+.compiler__output-header {
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--panel-border);
+    background-color: var(--panel-header-bg);
+    color: var(--panel-header-text);
+}
+
+.compiler__output-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.compiler__output-icon {
+    font-size: 1.1em;
+}
+
 .compiler__output-content {
-    padding: 1.25rem;
-    /* Increased padding */
+    padding: 1.5rem;
     font-size: 1.05rem;
     line-height: 1.6;
     white-space: pre-wrap;
@@ -257,19 +249,33 @@
     flex: 1;
     font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
     color: var(--output-text-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.compiler__output-text {
+    margin: 0;
+    flex: 1;
+}
+
+.compiler__fix-action--output {
+    padding: 1rem 1.5rem;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
 }
 
 /* --- Spinner Animation --- */
 .compiler__spinner {
     width: 1.1rem;
-    /* Slightly larger spinner */
     height: 1.1rem;
     border: 3px solid rgba(255, 255, 255, 0.4);
-    /* Thicker border */
     border-radius: 50%;
     border-top-color: white;
     animation: spin 0.8s linear infinite;
-    /* Faster and linear spin */
 }
 
 @keyframes spin {
@@ -278,17 +284,15 @@
     }
 }
 
-/* --- Theme Styles (using CSS variables) --- */
+/* --- Theme Styles --- */
 /* Dark Theme Variables */
 .compiler.dark-theme {
     --background-color: #1a1a2e;
-    /* Deep dark blue */
     --text-color: #e0e0e0;
     --header-bg: #2a2a4a;
-    /* Slightly lighter dark blue */
+    --header-border: #3a3a5a;
     --header-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     --panel-bg: #22223b;
-    /* Another dark blue shade */
     --panel-border: #3b3b5b;
     --panel-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     --panel-header-bg: #333355;
@@ -296,39 +300,39 @@
     --input-bg: #3c3c5c;
     --border-color: #5a5a7a;
     --caret-color: #8be9fd;
-    /* Neon blue for caret */
     --accent-color: #8be9fd;
-    /* Neon blue accent */
-    --accent-color-light: rgba(139, 233, 253, 0.3);
+    --accent-color-light: #6272a4;
+    --run-button-bg: #50fa7b;
+    --clear-button-bg: #ff5555;
+    --fix-button-bg: #8be9fd;
     --output-text-color: #b3e0ff;
-    /* Lighter blue for output */
-    --icon-color: #ffa500;
-    /* Orange for icons */
+    --scrollbar-thumb-color: #555;
+    --scrollbar-track-color: #333;
 }
 
 /* Light Theme Variables */
 .compiler.light-theme {
-    --background-color: #f0f2f5;
-    /* Light grey */
+    --background-color: #f8f9fa;
     --text-color: #333;
     --header-bg: #ffffff;
+    --header-border: #e0e0e0;
     --header-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     --panel-bg: #ffffff;
     --panel-border: #dcdfe4;
     --panel-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    --panel-header-bg: #edf1f7;
+    --panel-header-bg: #f1f3f5;
     --panel-header-text: #333;
     --input-bg: #ffffff;
     --border-color: #d0d3d9;
     --caret-color: #007bff;
-    /* Blue for caret */
     --accent-color: #007bff;
-    /* Blue accent */
-    --accent-color-light: rgba(0, 123, 255, 0.2);
+    --accent-color-light: #6c8ebf;
+    --run-button-bg: #28a745;
+    --clear-button-bg: #dc3545;
+    --fix-button-bg: #17a2b8;
     --output-text-color: #212529;
-    /* Darker text for output */
-    --icon-color: #007bff;
-    /* Blue for icons */
+    --scrollbar-thumb-color: #ccc;
+    --scrollbar-track-color: #f0f0f0;
 }
 
 /* --- Responsive Design --- */
@@ -348,26 +352,21 @@
     .compiler__controls {
         flex-wrap: wrap;
         justify-content: center;
-        /* Center buttons when wrapped */
     }
 
     .compiler__select,
     .compiler__button {
         flex-grow: 1;
-        /* Allow controls to fill space when wrapped */
         min-width: 120px;
-        /* Ensure a minimum width */
     }
 
     .compiler__workspace {
         grid-template-columns: 1fr;
-        /* Single column layout on smaller tablets */
     }
 
     .compiler__editor,
     .compiler__output {
         min-height: 350px;
-        /* Ensure sufficient height for both */
     }
 }
 
@@ -419,14 +418,12 @@
 
     .compiler__controls {
         flex-direction: column;
-        /* Stack controls vertically on small phones */
         gap: 0.5rem;
     }
 
     .compiler__select,
     .compiler__button {
         width: 100%;
-        /* Full width for controls */
     }
 
     .compiler__editor,
@@ -442,7 +439,7 @@
     }
 }
 
-/* Optional: Add a smooth scrollbar for better UX */
+/* Scrollbar Styles */
 .compiler__code-display::-webkit-scrollbar,
 .compiler__code-input::-webkit-scrollbar,
 .compiler__output-content::-webkit-scrollbar {
@@ -463,11 +460,58 @@
     background-color: var(--scrollbar-track-color);
 }
 
-.compiler.dark-theme {
-    --scrollbar-thumb-color: #555;
-    --scrollbar-track-color: #333;
+/* Syntax Highlighting (basic) */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #6a9955;
 }
 
-.compiler.light-theme {
-    --scrollbar-thumb-color: #ccc;
-    --scrollbar-track-color: #f0f0f0; }
+.token.punctuation {
+    color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #b5cea8;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: #ce9178;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #d4d4d4;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: #569cd6;
+}
+
+.token.function,
+.token.class-name {
+    color: #dcdcaa;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+    color: #d16969;
+}
