@@ -219,7 +219,7 @@ const Compiler = () => {
             <div className="compiler__editor-header">
               <div className="compiler__filename-container">
                 <span className="compiler__file-icon">📄</span>
-                <span className="compiler__filename">DarkCode.{language}</span>
+                <span className="compiler__filename">Sakib.{language}</span>
               </div>
               {(
                 <div className="compiler__fix-action">
